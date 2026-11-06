@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Privacy Policy for the Hisaab Page app, published by Vardhishnu Enterprises.">
+<meta name="theme-color" content="#123d2e">
+<title>Privacy Policy | Hisaab Page</title>
+<style>
+:root {
+  color-scheme: light;
+  --green: #176b4a;
+  --dark: #123d2e;
+  --cream: #f7faf6;
+  --text: #20342a;
+  --muted: #63736a;
+  --border: #e3ebe5;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--green); }
+.navbar {
+  background: rgba(255,255,255,.94);
+  border-bottom: 1px solid var(--border);
+}
+.nav-inner, main, footer > div {
+  width: min(900px, 90%);
+  margin: 0 auto;
+}
+.nav-inner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.brand {
+  color: var(--dark);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -.04em;
+  text-decoration: none;
+}
+.back-link { font-size: 14px; font-weight: 650; text-decoration: none; }
+main {
+  margin-top: 44px;
+  margin-bottom: 56px;
+  padding: clamp(24px, 5vw, 52px);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+.eyebrow {
+  margin: 0 0 8px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+h1, h2 { color: var(--dark); line-height: 1.25; letter-spacing: -.035em; }
+h1 { margin: 0 0 8px; font-size: clamp(32px, 5vw, 46px); }
+h2 { margin: 32px 0 10px; font-size: 22px; }
+p, li { color: var(--muted); }
+p { margin: 10px 0; }
+ul { padding-left: 22px; }
+li { margin: 6px 0; }
+.updated { margin: 0 0 28px; font-size: 14px; }
+.notice {
+  margin: 24px 0;
+  padding: 16px 18px;
+  background: #fff8e8;
+  border: 1px solid #f0dfb8;
+  border-radius: 12px;
+}
+.notice p { margin: 0; color: #594b2e; }
+.contact {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+footer {
+  padding: 24px 0;
+  background: var(--dark);
+  color: #dce9df;
+  font-size: 13px;
+}
+footer p { margin: 0; color: #dce9df; }
+a:focus-visible { outline: 3px solid #85c89c; outline-offset: 3px; }
+@media (max-width: 560px) {
+  .nav-inner { min-height: 64px; }
+  main { margin-top: 24px; padding: 24px 20px; }
+  h2 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<header class="navbar">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Hisaab Page</a>
+    <a class="back-link" href="index.html">Back to home</a>
+  </div>
+</header>
+
+<main>
+  <p class="eyebrow">Hisaab Page</p>
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last updated: November 6, 2026</p>
+
+  <p>This Privacy Policy describes how Vardhishnu Enterprises ("we", "us", or "our") handles information when you use the Hisaab Page mobile app. The app helps you keep purchase, farming, expense, payment, contact, and budget records.</p>
+
+  <h2>Information we handle</h2>
+  <ul>
+    <li><strong>Account information:</strong> When you sign in with Google, Firebase Authentication processes your sign-in. We receive account details such as your name, email address, and Firebase user ID. We save your name, email address, and referral ID in Firebase Firestore as a user profile.</li>
+    <li><strong>Records you enter:</strong> Purchase and expense details, dates, amounts, notes, budget information, and contact or transaction details are stored in the app's local storage on your device. The current app does not sync these records to Firestore.</li>
+    <li><strong>Bill photos:</strong> If you use bill scanning, the selected image is sent to our bill-recognition service so it can extract information such as the vendor, bill number, amount, date, and product. The image is also kept on your device when you save it with a record.</li>
+    <li><strong>App preferences:</strong> The app stores preferences such as your selected language and the currently selected account on your device.</li>
+  </ul>
+
+  <h2>How we use information</h2>
+  <p>We use account information to provide Google sign-in and maintain your user profile. Information you enter is used to provide the app's record-keeping features. Bill images are processed to return extracted bill details and help fill in a record; you can review and edit those details before saving.</p>
+
+  <h2>Services that process information</h2>
+  <p>Google Firebase Authentication and Firestore process sign-in and profile information. When you choose bill scanning, the image is sent to a bill-recognition service for processing. Those services process information under their own terms and privacy practices. We do not have verified retention details for the bill-recognition service; do not use bill scanning for documents containing information you do not want processed by that service.</p>
+  <p>We do not knowingly sell your personal information. We may disclose information if required by law or when necessary to protect users, the app, or our legal rights.</p>
+
+  <div class="notice">
+    <p><strong>Important:</strong> The current Android app code sends bill images to its recognition endpoint using HTTP rather than HTTPS. This does not encrypt the image in transit. Avoid using bill scanning for sensitive documents until the app uses a secure HTTPS endpoint.</p>
+  </div>
+
+  <h2>Storage and retention</h2>
+  <p>Records saved by the app remain in the app's local storage on your device until you delete them or clear the app's data. Signing out does not delete those local records. Account profile information is stored in Firebase Firestore while your profile remains active and until a deletion request is processed, subject to any retention required by law.</p>
+  <p>Bill images sent for recognition are processed by the recognition service. We are unable to confirm that service's retention period in this policy.</p>
+
+  <h2>Your choices and deletion requests</h2>
+  <p>You can delete individual records using the app's available controls or clear the app's local data through your device settings. The app currently does not provide in-app account deletion. To request deletion of your Firebase account and profile information, email us from the account email address and include "Account deletion request" in the subject. We may ask for information needed to verify the request. Signing out alone does not delete your Firebase account or profile.</p>
+
+  <h2>Security</h2>
+  <p>We and the services we use apply safeguards intended to protect information. No method of storage or transmission is completely secure. In particular, as noted above, the current bill-scanning upload is not encrypted in transit; do not use that feature for sensitive documents until this is corrected.</p>
+
+  <h2>Children's privacy</h2>
+  <p>Hisaab Page is a general record-keeping app and is not designed to collect personal information from children. If you believe a child has provided account information to us, contact us so we can review the request.</p>
+
+  <h2>Changes to this policy</h2>
+  <p>We may update this Privacy Policy when the app or its data practices change. We will post the revised policy on this page and update the date above.</p>
+
+  <div class="contact">
+    <h2>Contact us</h2>
+    <p>Vardhishnu Enterprises<br>
+      Email: <a href="mailto:hisaabpage.app@gmail.com">hisaabpage.app@gmail.com</a>
+    </p>
+  </div>
+</main>
+
+<footer>
+  <div><p>&copy; 2026 Hisaab Page. Published by Vardhishnu Enterprises.</p></div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Hisaab Page helps farmers and small businesses organise daily purchases, expenses and payments.">
+<meta name="theme-color" content="#123d2e">
+<title>Hisaab Page | Your Hisaab, Your Way</title>
+
+<style>
+:root {
+  color-scheme:light;
+  --green:#176b4a;
+  --dark:#123d2e;
+  --light:#eaf4ed;
+  --cream:#f7faf6;
+  --white:#fff;
+  --text:#20342a;
+  --muted:#63736a;
+  --border:#e3ebe5;
+  --shadow:0 20px 55px rgba(18,61,46,.10);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--cream);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+button{font:inherit;cursor:pointer}
+.container{width:min(1120px,90%);margin:auto}
+
+.navbar{background:rgba(255,255,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.nav-inner{min-height:75px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;color:var(--dark);letter-spacing:-.04em}
+.brand-mark{width:42px;height:42px;display:grid;place-items:center;background:var(--green);color:white;border-radius:14px;font-size:23px;box-shadow:0 7px 16px rgba(23,107,74,.2)}
+.nav-links{display:flex;align-items:center;gap:22px;font-size:14px;font-weight:600}
+.nav-links a:not(.nav-download):hover,.footer-links a:hover{color:var(--green)}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.language-button{border:1px solid var(--border);background:white;padding:9px 13px;border-radius:10px;color:var(--green);font-weight:700}
+.menu-button{display:none;border:0;background:none;color:var(--green);font-size:25px}
+
+.hero{padding:94px 0 100px;background:radial-gradient(ellipse at 82% 18%,rgba(195,225,199,.58),transparent 30%),linear-gradient(135deg,#f8faf5,#edf5ed)}
+.hero-grid{display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:64px}
+.eyebrow{display:inline-flex;align-items:center;color:var(--green);background:#e5f1e7;padding:8px 14px;border-radius:30px;font-size:13px;font-weight:700;margin-bottom:21px}
+h1{color:var(--dark);font-size:clamp(40px,5vw,64px);line-height:1.08;letter-spacing:-.055em;margin:0 0 22px}
+.hero-description{color:var(--muted);font-size:18px;max-width:570px;margin:0 0 28px}
+.hero-buttons{display:flex;flex-wrap:wrap;gap:13px;margin-bottom:19px}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:13px 21px;border-radius:12px;font-weight:700;border:1px solid transparent;transition:background .2s ease,transform .2s ease,box-shadow .2s ease}
+.button:focus-visible,.language-button:focus-visible,.menu-button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #85c89c;outline-offset:3px}
+.primary{background:var(--green);color:white;box-shadow:0 8px 18px rgba(23,107,74,.18)}
+.primary:hover{background:var(--dark);transform:translateY(-2px);box-shadow:0 12px 24px rgba(23,107,74,.22)}
+.secondary{background:white;color:var(--dark);border-color:var(--border)}
+.secondary:hover{border-color:#b9d1c0;background:#f8fcf8}
+.nav-download{padding:10px 15px;border-radius:10px;color:white;background:var(--green)}
+.nav-download:hover{background:var(--dark);color:white}
+.play-icon{width:18px;height:18px;flex:none;fill:currentColor}
+.hero-note{font-size:13px;color:var(--muted)}
+.hero-visual{position:relative;background:rgba(255,255,255,.88);padding:27px;border-radius:26px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.9)}
+.visual-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+.visual-header strong{color:var(--dark);font-size:19px;letter-spacing:-.03em}
+.visual-label{color:var(--muted);font-size:12px}
+.balance-card{padding:22px;background:linear-gradient(135deg,#176b4a,#104c37);color:white;border-radius:18px;margin-bottom:16px}
+.balance-card small{opacity:.8}
+.balance-card h2{font-size:34px;letter-spacing:-.04em;margin:5px 0}
+.sample-list{display:grid;gap:10px}
+.sample-row{display:flex;justify-content:space-between;align-items:center;padding:14px;border:1px solid var(--border);border-radius:12px;font-size:14px}
+.sample-row small{display:block;color:var(--muted)}
+.sample-amount{font-weight:700;color:var(--green)}
+
+section{padding:84px 0}
+.section-heading{text-align:center;max-width:720px;margin:0 auto 46px}
+.section-heading h2{color:var(--dark);font-size:clamp(30px,4vw,44px);line-height:1.15;letter-spacing:-.045em;margin:0 0 14px}
+.section-heading p{color:var(--muted)}
+.problem-section,.how-section,.faq-section{background:white}
+.problem-grid,.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.problem-card,.feature-card{background:white;padding:26px;border:1px solid var(--border);border-radius:18px}
+.card-icon,.feature-icon{font-size:27px;margin-bottom:14px}
+.card-icon{width:50px;height:50px;display:grid;place-items:center;background:var(--light);border-radius:15px}
+.problem-card h3,.feature-card h3{color:var(--dark);font-size:19px;margin-bottom:9px}
+.problem-card p,.feature-card p{color:var(--muted);font-size:14px}
+.problem-card,.feature-card{transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.problem-card:hover,.feature-card:hover{transform:translateY(-4px);border-color:#d3e2d7;box-shadow:var(--shadow)}
+
+.solution{background:linear-gradient(130deg,#123d2e,#176b4a);color:white}
+.solution-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:50px;align-items:center}
+.solution h2{font-size:clamp(32px,4vw,45px);line-height:1.15;letter-spacing:-.04em;margin:0 0 20px}
+.solution p{color:#dce9df;margin-bottom:15px}
+.solution-list{display:grid;gap:13px}
+.solution-item{display:flex;gap:13px;align-items:flex-start;padding:16px;background:#ffffff12;border:1px solid #ffffff24;border-radius:13px}
+.check{color:#f1cf80;font-size:20px;font-weight:800}
+
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:23px}
+.step{text-align:center;padding:22px}
+.step-number{width:52px;height:52px;margin:0 auto 17px;border-radius:17px;background:var(--light);color:var(--green);display:grid;place-items:center;font-size:21px;font-weight:800}
+.step h3{color:var(--dark);margin-bottom:9px}
+.step p{color:var(--muted);font-size:14px}
+
+.about-section{background:#f0f5ef}
+.about-content{max-width:820px;margin:auto;text-align:center}
+.about-content h2{color:var(--dark);font-size:clamp(30px,4vw,40px);letter-spacing:-.04em;margin:0 0 18px}
+.about-content p{color:var(--muted);margin-bottom:15px}
+.tagline{color:var(--green);font-size:25px;font-weight:800;margin-top:27px}
+
+.download-section{background:white;padding:0 0 84px}
+.download-panel{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:35px 40px;border-radius:22px;background:linear-gradient(120deg,#eaf4ed,#f2f7ed);border:1px solid #e1ece3}
+.download-panel h2{color:var(--dark);font-size:clamp(24px,3vw,32px);line-height:1.2;letter-spacing:-.04em;margin:0 0 8px}
+.download-panel p{color:var(--muted);margin:0}
+
+.faq-list{max-width:800px;margin:auto;display:grid;gap:12px}
+details{padding:19px 21px;border:1px solid var(--border);border-radius:14px;background:white}
+summary{cursor:pointer;color:var(--dark);font-weight:700}
+details p{color:var(--muted);margin-top:12px;font-size:14px}
+
+.contact-section{background:var(--dark);color:white}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center}
+.contact-section h2{font-size:clamp(32px,4vw,42px);line-height:1.15;letter-spacing:-.04em;margin:0 0 15px}
+.contact-section p{color:#dce9df;margin-bottom:15px}
+.contact-card{padding:29px;border-radius:19px;background:white;color:var(--text);box-shadow:var(--shadow)}
+.contact-card h3{color:var(--green);margin-bottom:13px}
+.contact-card p{color:var(--muted);overflow-wrap:anywhere}
+.contact-card a:not(.button){color:var(--green);font-weight:700}
+.contact-card .button{color:white}
+
+footer{background:#0d3024;color:white;padding:38px 0}
+.footer-top{display:flex;justify-content:space-between;gap:25px;flex-wrap:wrap;padding-bottom:24px}
+.footer-brand{font-size:21px;font-weight:800;margin-bottom:8px}
+.footer-copy{color:#c7d7cc;font-size:13px;max-width:430px}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:#e0e9e2}
+.footer-bottom{border-top:1px solid #ffffff26;padding-top:20px;color:#c7d7cc;font-size:12px}
+
+@media(max-width:850px){
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;padding:20px 5% 24px;background:white;border-bottom:1px solid var(--border);flex-direction:column;align-items:stretch;gap:16px}
+.nav-links.open{display:flex}
+.nav-download{align-self:flex-start}
+.menu-button{display:block}
+.hero-grid,.solution-grid,.contact-grid{grid-template-columns:1fr}
+.hero-grid{gap:40px}
+.hero{padding:74px 0 80px}
+.hero-visual{max-width:620px}
+.problem-grid,.features-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+section{padding:64px 0}
+.hero{padding:60px 0 68px}
+.problem-grid,.features-grid,.steps-grid{grid-template-columns:1fr}
+.hero-visual{padding:18px;border-radius:20px}
+.nav-inner{min-height:68px}
+.brand{font-size:19px}
+.brand-mark{width:38px;height:38px}
+.language-button{padding:8px 10px;font-size:12px}
+.download-section{padding-bottom:64px}
+.download-panel{align-items:flex-start;flex-direction:column;padding:27px 24px}
+.contact-card{padding:23px}
+.sample-row{gap:10px;padding:12px;font-size:13px}
+.sample-amount{white-space:nowrap}
+}
+@media(prefers-reduced-motion:reduce){
+html{scroll-behavior:auto}
+*,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="container nav-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark">ह</span>
+      <span>Hisaab Page</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#home" data-en="Home" data-mr="मुख्यपृष्ठ">Home</a>
+      <a href="#about" data-en="About" data-mr="आमच्याबद्दल">About</a>
+      <a href="#features" data-en="Features" data-mr="वैशिष्ट्ये">Features</a>
+      <a href="#how" data-en="How It Works" data-mr="कसे कार्य करते">How It Works</a>
+      <a href="#faq" data-en="FAQs" data-mr="प्रश्न">FAQs</a>
+      <a href="#contact" data-en="Contact" data-mr="संपर्क">Contact</a>
+      <a class="nav-download" href="https://play.google.com/store/search?q=Hisaab%20Page&amp;c=apps" target="_blank" rel="noopener noreferrer">
+        <span data-en="Get the app" data-mr="अॅप मिळवा">Get the app</span>
+      </a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="language-button" id="languageToggle" onclick="toggleLanguage()">मराठी</button>
+      <button class="menu-button" id="menuToggle" onclick="toggleMenu()" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow" data-en="A simpler way to manage your daily accounts" data-mr="दैनंदिन हिशोब ठेवण्याचा सोपा मार्ग">
+        A simpler way to manage your daily accounts
+      </span>
+
+      <h1 data-en="Your hard work deserves a clear Hisaab." data-mr="तुमच्या मेहनतीचा हिशोब असावा अगदी स्पष्ट.">
+        Your hard work deserves a clear Hisaab.
+      </h1>
+
+      <p class="hero-description" data-en="From everyday expenses to business payments, Hisaab Page helps you organise your financial records in one simple place." data-mr="रोजच्या खर्चापासून व्यवसायातील व्यवहारांपर्यंत, Hisaab Page तुमचा आर्थिक हिशोब एकाच सोप्या ठिकाणी व्यवस्थित ठेवण्यास मदत करते.">
+        From everyday expenses to business payments, Hisaab Page helps you organise your financial records in one simple place.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="https://play.google.com/store/search?q=Hisaab%20Page&amp;c=apps" class="button primary" target="_blank" rel="noopener noreferrer">
+          <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.8v16.4c0 .8.9 1.3 1.6.9l13-8.2a1.1 1.1 0 0 0 0-1.8l-13-8.2A1.1 1.1 0 0 0 5 3.8Z"/></svg>
+          <span data-en="Download on Google Play" data-mr="Google Play वरून डाउनलोड करा">Download on Google Play</span>
+        </a>
+        <a href="#features" class="button secondary" data-en="Explore features" data-mr="वैशिष्ट्ये पाहा">Explore features</a>
+      </div>
+
+      <p class="hero-note" data-en="Designed for farmers, small businesses and everyday users." data-mr="शेतकरी, लहान व्यवसाय आणि दैनंदिन वापरकर्त्यांसाठी.">
+        Designed for farmers, small businesses and everyday users.
+      </p>
+    </div>
+
+    <div class="hero-visual">
+      <div class="visual-header">
+        <strong>Hisaab Page</strong>
+        <span class="visual-label" data-en="Illustrative dashboard" data-mr="उदाहरणार्थ डॅशबोर्ड">Illustrative dashboard</span>
+      </div>
+
+      <div class="balance-card">
+        <small data-en="Current Balance" data-mr="सध्याची शिल्लक">Current Balance</small>
+        <h2>₹ 24,500</h2>
+        <small data-en="Illustrative example only" data-mr="केवळ उदाहरणासाठी">Illustrative example only</small>
+      </div>
+
+      <div class="sample-list">
+        <div class="sample-row">
+          <div><strong data-en="Purchases" data-mr="खरेदी">Purchases</strong><small data-en="Recorded entries" data-mr="नोंदवलेले व्यवहार">Recorded entries</small></div>
+          <span class="sample-amount">₹ 12,000</span>
+        </div>
+        <div class="sample-row">
+          <div><strong data-en="Expenses" data-mr="खर्च">Expenses</strong><small data-en="Daily spending" data-mr="दैनंदिन खर्च">Daily spending</small></div>
+          <span class="sample-amount">₹ 3,500</span>
+        </div>
+        <div class="sample-row">
+          <div><strong data-en="Payments In" data-mr="जमा रक्कम">Payments In</strong><small data-en="Received payments" data-mr="मिळालेली रक्कम">Received payments</small></div>
+          <span class="sample-amount">₹ 40,000</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="problem-section">
+  <div class="container">
+    <div class="section-heading">
+      <h2 data-en="Does keeping track of money feel difficult?" data-mr="पैशांचा हिशोब ठेवणे कठीण वाटते का?">
+        Does keeping track of money feel difficult?
+      </h2>
+      <p data-en="Small expenses can become difficult to remember when records are spread across notebooks, loose bills and memory." data-mr="वही, वेगवेगळ्या पावत्या आणि आठवणींमध्ये नोंदी विखुरल्या असतील तर छोट्या खर्चांचाही हिशोब ठेवणे कठीण होऊ शकते.">
+        Small expenses can become difficult to remember when records are spread across notebooks, loose bills and memory.
+      </p>
+    </div>
+
+    <div class="problem-grid">
+      <article class="problem-card">
+        <div class="card-icon">📒</div>
+        <h3 data-en="Scattered records" data-mr="विखुरलेल्या नोंदी">Scattered records</h3>
+        <p data-en="Expenses written in different notebooks can be difficult to organise and review." data-mr="वेगवेगळ्या वह्यांमध्ये लिहिलेला खर्च एकत्र करणे आणि तपासणे कठीण होऊ शकते.">
+          Expenses written in different notebooks can be difficult to organise and review.
+        </p>
+      </article>
+
+      <article class="problem-card">
+        <div class="card-icon">🧾</div>
+        <h3 data-en="Bills pile up" data-mr="पावत्यांचा साठा">Bills pile up</h3>
+        <p data-en="Keeping paper bills safely and finding the right one later takes time." data-mr="कागदी पावत्या जपून ठेवणे आणि नंतर योग्य पावती शोधणे वेळखाऊ ठरू शकते.">
+          Keeping paper bills safely and finding the right one later takes time.
+        </p>
+      </article>
+
+      <article class="problem-card">
+        <div class="card-icon">🧮</div>
+        <h3 data-en="End-of-period confusion" data-mr="शेवटी हिशोबाचा गोंधळ">End-of-period confusion</h3>
+        <p data-en="When entries are missed, calculating total purchases and expenses becomes harder." data-mr="नोंदी राहून गेल्या तर एकूण खरेदी आणि खर्च मोजताना गोंधळ होऊ शकतो.">
+          When entries are missed, calculating total purchases and expenses becomes harder.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="solution">
+  <div class="container solution-grid">
+    <div>
+      <h2 data-en="Bring your daily Hisaab together." data-mr="तुमचा रोजचा हिशोब आणा एकाच ठिकाणी.">
+        Bring your daily Hisaab together.
+      </h2>
+      <p data-en="Hisaab Page is designed to make everyday record-keeping more organised and easier to follow." data-mr="दैनंदिन आर्थिक नोंदी अधिक व्यवस्थित आणि समजण्यास सोप्या करण्यासाठी Hisaab Page तयार केले आहे.">
+        Hisaab Page is designed to make everyday record-keeping more organised and easier to follow.
+      </p>
+      <p data-en="Whether you manage farm expenses, a small shop or household transactions, the aim is simple: make your Hisaab easier to maintain." data-mr="तुम्ही शेतीचा खर्च, छोटे दुकान किंवा घरातील व्यवहार सांभाळत असाल, उद्देश एकच आहे: तुमचा हिशोब ठेवणे सोपे करणे.">
+        Whether you manage farm expenses, a small shop or household transactions, the aim is simple: make your Hisaab easier to maintain.
+      </p>
+    </div>
+
+    <div class="solution-list">
+      <div class="solution-item"><span class="check">✓</span><span data-en="Keep purchase and expense entries organised." data-mr="खरेदी आणि खर्चाच्या नोंदी व्यवस्थित ठेवा.">Keep purchase and expense entries organised.</span></div>
+      <div class="solution-item"><span class="check">✓</span><span data-en="Record payments received." data-mr="मिळालेल्या पेमेंटची नोंद करा.">Record payments received.</span></div>
+      <div class="solution-item"><span class="check">✓</span><span data-en="Keep track of transactions and balances." data-mr="व्यवहार आणि शिल्लक रकमेचा मागोवा ठेवा.">Keep track of transactions and balances.</span></div>
+      <div class="solution-item"><span class="check">✓</span><span data-en="Keep relevant bill information together." data-mr="पावत्यांची आवश्यक माहिती एकत्र ठेवा.">Keep relevant bill information together.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-heading">
+      <h2 data-en="Everything starts with a simple entry." data-mr="प्रत्येक नोंदीची सुरुवात सोप्या पद्धतीने.">
+        Everything starts with a simple entry.
+      </h2>
+      <p data-en="Explore the tools designed to help you maintain your everyday records." data-mr="दैनंदिन नोंदी ठेवण्यासाठी तयार केलेली वैशिष्ट्ये पाहा.">
+        Explore the tools designed to help you maintain your everyday records.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <article class="feature-card">
+        <div class="feature-icon">🧾</div>
+        <h3 data-en="Bill information" data-mr="बिलची माहिती">Bill information</h3>
+        <p data-en="Capture bill details from supported images or documents." data-mr="समर्थित फोटो किंवा कागदपत्रांमधून बिलची माहिती नोंदवा.">Capture bill details from supported images or documents.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">🛒</div>
+        <h3 data-en="Purchase records" data-mr="खरेदीच्या नोंदी">Purchase records</h3>
+        <p data-en="Maintain a record of purchases and related amounts." data-mr="खरेदी आणि त्यासंबंधित रकमेची नोंद ठेवा.">Maintain a record of purchases and related amounts.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">💸</div>
+        <h3 data-en="Daily expenses" data-mr="दैनंदिन खर्च">Daily expenses</h3>
+        <p data-en="Record everyday spending in one organised place." data-mr="दररोज होणाऱ्या खर्चाची नोंद एकाच ठिकाणी करा.">Record everyday spending in one organised place.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">🎙️</div>
+        <h3 data-en="Voice entry" data-mr="आवाजाद्वारे नोंद">Voice entry</h3>
+        <p data-en="Use voice entry for supported payment records." data-mr="समर्थित पेमेंट नोंदींसाठी आवाजाद्वारे नोंद करण्याचा पर्याय वापरा.">Use voice entry for supported payment records.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3 data-en="Account overview" data-mr="हिशोबाचा आढावा">Account overview</h3>
+        <p data-en="View purchase, expense, payment and balance information together." data-mr="खरेदी, खर्च, पेमेंट आणि शिल्लक रकमेची माहिती एकत्र पाहा.">View purchase, expense, payment and balance information together.</p>
+      </article>
+
+      <article class="feature-card">
+        <div class="feature-icon">✏️</div>
+        <h3 data-en="Edit your entries" data-mr="नोंदींमध्ये बदल करा">Edit your entries</h3>
+        <p data-en="Review and update entries when corrections are needed." data-mr="आवश्यकतेनुसार नोंदी तपासा आणि त्यामध्ये बदल करा.">Review and update entries when corrections are needed.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="download-section" aria-label="Download Hisaab Page">
+  <div class="container">
+    <div class="download-panel">
+      <div>
+        <h2 data-en="Ready to simplify your daily Hisaab?" data-mr="तुमचा रोजचा हिशोब सोपा करण्यास तयार आहात?">Ready to simplify your daily Hisaab?</h2>
+        <p data-en="Find Hisaab Page on Google Play and get started." data-mr="Google Play वर Hisaab Page शोधा आणि सुरुवात करा.">Find Hisaab Page on Google Play and get started.</p>
+      </div>
+      <a href="https://play.google.com/store/search?q=Hisaab%20Page&amp;c=apps" class="button primary" target="_blank" rel="noopener noreferrer">
+        <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3.8v16.4c0 .8.9 1.3 1.6.9l13-8.2a1.1 1.1 0 0 0 0-1.8l-13-8.2A1.1 1.1 0 0 0 5 3.8Z"/></svg>
+        <span data-en="Get it on Google Play" data-mr="Google Play वर मिळवा">Get it on Google Play</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="how-section" id="how">
+  <div class="container">
+    <div class="section-heading">
+      <h2 data-en="A simple way to maintain your Hisaab" data-mr="तुमचा हिशोब ठेवण्याची सोपी पद्धत">
+        A simple way to maintain your Hisaab
+      </h2>
+      <p data-en="Build a useful record by keeping your entries organised." data-mr="तुमच्या नोंदी व्यवस्थित ठेवून उपयोगी हिशोब तयार करा.">
+        Build a useful record by keeping your entries organised.
+      </p>
+    </div>
+
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3 data-en="Add an entry" data-mr="नोंद करा">Add an entry</h3>
+        <p data-en="Enter a purchase, expense or payment." data-mr="खरेदी, खर्च किंवा पेमेंटची नोंद करा.">Enter a purchase, expense or payment.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3 data-en="Organise your records" data-mr="नोंदी व्यवस्थित ठेवा">Organise your records</h3>
+        <p data-en="Keep your transactions together for easier reference." data-mr="व्यवहारांची माहिती एकत्र ठेवा, जेणेकरून ती पुन्हा पाहणे सोपे होईल.">Keep your transactions together for easier reference.</p>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3 data-en="Review your Hisaab" data-mr="तुमचा हिशोब तपासा">Review your Hisaab</h3>
+        <p data-en="Refer to your recorded transactions and account overview." data-mr="नोंदवलेले व्यवहार आणि हिशोबाचा आढावा तपासा.">Refer to your recorded transactions and account overview.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="container about-content">
+    <span class="eyebrow" data-en="A purpose behind every entry" data-mr="प्रत्येक नोंदीमागे एक उद्देश">A purpose behind every entry</span>
+    <h2 data-en="Built around everyday problems." data-mr="दैनंदिन अडचणी लक्षात घेऊन तयार केलेले.">Built around everyday problems.</h2>
+
+    <p data-en="Hisaab Page is created with a simple thought: managing daily accounts should not feel complicated. Farmers, small business owners and families often manage many transactions, bills and expenses. Keeping these records organised can make everyday account management easier."
+       data-mr="Hisaab Page ही एका साध्या विचारातून तयार केली आहे: रोजचा हिशोब ठेवणे कठीण वाटू नये. शेतकरी, लहान व्यावसायिक आणि कुटुंबांना अनेक व्यवहार, पावत्या आणि खर्च सांभाळावे लागतात. या नोंदी व्यवस्थित ठेवल्याने दैनंदिन हिशोब सांभाळणे सोपे होऊ शकते.">
+      Hisaab Page is created with a simple thought: managing daily accounts should not feel complicated. Farmers, small business owners and families often manage many transactions, bills and expenses. Keeping these records organised can make everyday account management easier.
+    </p>
+
+    <p data-en="Our aim is to make everyday record-keeping simple, practical and accessible."
+       data-mr="दैनंदिन नोंदी ठेवण्याची पद्धत सोपी, उपयुक्त आणि सहज वापरता येईल अशी बनवणे हे आमचे ध्येय आहे.">
+      Our aim is to make everyday record-keeping simple, practical and accessible.
+    </p>
+
+    <div class="tagline">मेहनत तुमची, हिशोब तुमचाच!</div>
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <div class="container">
+    <div class="section-heading">
+      <h2 data-en="Frequently asked questions" data-mr="नेहमी विचारले जाणारे प्रश्न">Frequently asked questions</h2>
+      <p data-en="A few things you may want to know about Hisaab Page." data-mr="Hisaab Page बद्दल तुम्हाला जाणून घ्यायच्या काही गोष्टी.">A few things you may want to know about Hisaab Page.</p>
+    </div>
+
+    <div class="faq-list">
+      <details>
+        <summary data-en="Who can use Hisaab Page?" data-mr="Hisaab Page कोण वापरू शकते?">Who can use Hisaab Page?</summary>
+        <p data-en="It is designed for farmers, small business owners and individuals who want to organise everyday purchases, expenses and payments."
+           data-mr="दैनंदिन खरेदी, खर्च आणि पेमेंटच्या नोंदी व्यवस्थित ठेवू इच्छिणारे शेतकरी, छोटे व्यावसायिक आणि इतर व्यक्ती यासाठी ते तयार केले आहे.">
+          It is designed for farmers, small business owners and individuals who want to organise everyday purchases, expenses and payments.
+        </p>
+      </details>
+
+      <details>
+        <summary data-en="What can I record?" data-mr="मी कोणत्या नोंदी करू शकतो?">What can I record?</summary>
+        <p data-en="The app is designed to help organise purchases, daily expenses, payments received and transaction records."
+           data-mr="खरेदी, दैनंदिन खर्च, मिळालेली पेमेंट आणि व्यवहारांच्या नोंदी व्यवस्थित ठेवण्यासाठी हे अॅप तयार केले आहे.">
+          The app is designed to help organise purchases, daily expenses, payments received and transaction records.
+        </p>
+      </details>
+
+      <details>
+        <summary data-en="Does Hisaab Page support Marathi?" data-mr="Hisaab Page मध्ये मराठी भाषा उपलब्ध आहे का?">Does Hisaab Page support Marathi?</summary>
+        <p data-en="Hisaab Page is designed with English and Marathi language support. Check the app for the language options currently available."
+           data-mr="Hisaab Page मध्ये इंग्रजी आणि मराठी भाषेचा विचार केला आहे. सध्या उपलब्ध असलेले भाषा पर्याय अॅपमध्ये तपासा.">
+          Hisaab Page is designed with English and Marathi language support. Check the app for the language options currently available.
+        </p>
+      </details>
+
+      <details>
+        <summary data-en="How can I contact the Hisaab Page team?" data-mr="Hisaab Page टीमशी संपर्क कसा साधू शकतो?">How can I contact the Hisaab Page team?</summary>
+        <p data-en="You can contact the team using the email address in the Contact section."
+           data-mr="Contact विभागात दिलेल्या ईमेल पत्त्यावर तुम्ही टीमशी संपर्क साधू शकता.">
+          You can contact the team using the email address in the Contact section.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <h2 data-en="Let's make everyday Hisaab simpler." data-mr="चला, रोजचा हिशोब अधिक सोपा करूया.">
+        Let's make everyday Hisaab simpler.
+      </h2>
+      <p data-en="Have a question, suggestion or feedback? We would be happy to hear from you."
+         data-mr="तुम्हाला काही प्रश्न, सूचना किंवा अभिप्राय द्यायचा आहे का? आम्हाला तुमच्याशी संवाद साधायला आवडेल.">
+        Have a question, suggestion or feedback? We would be happy to hear from you.
+      </p>
+    </div>
+
+    <div class="contact-card">
+      <h3 data-en="Contact Information" data-mr="संपर्क माहिती">Contact Information</h3>
+      <p><strong data-en="Company:" data-mr="कंपनी:">Company:</strong><br>Vardhishnu Enterprises</p>
+      <p><strong data-en="Email:" data-mr="ईमेल:">Email:</strong><br>
+        <a href="mailto:hisaabpage.app@gmail.com">hisaabpage.app@gmail.com</a>
+      </p>
+      <a class="button primary" href="mailto:hisaabpage.app@gmail.com?subject=Hisaab%20Page%20Enquiry"
+         data-en="Send us an email" data-mr="आम्हाला ईमेल करा">Send us an email</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Hisaab Page</div>
+        <p class="footer-copy" data-en="A simpler way to organise everyday accounts." data-mr="दैनंदिन हिशोब व्यवस्थित ठेवण्याचा एक सोपा मार्ग.">
+          A simpler way to organise everyday accounts.
+        </p>
+        <p class="footer-copy" style="margin-top:10px;">Published by Vardhishnu Enterprises.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="#about" data-en="About" data-mr="आमच्याबद्दल">About</a>
+        <a href="#features" data-en="Features" data-mr="वैशिष्ट्ये">Features</a>
+        <a href="#faq" data-en="FAQs" data-mr="प्रश्न">FAQs</a>
+        <a href="#contact" data-en="Contact" data-mr="संपर्क">Contact</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      © <span id="year"></span> Hisaab Page. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+let currentLanguage = "en";
+
+function toggleLanguage() {
+  currentLanguage = currentLanguage === "en" ? "mr" : "en";
+  document.documentElement.lang = currentLanguage;
+
+  document.querySelectorAll("[data-en][data-mr]").forEach(element => {
+    element.textContent = element.getAttribute("data-" + currentLanguage);
+  });
+
+  document.getElementById("languageToggle").textContent =
+    currentLanguage === "en" ? "मराठी" : "English";
+  updateMenuButtonLabel(document.getElementById("navLinks").classList.contains("open"));
+}
+
+function updateMenuButtonLabel(isOpen) {
+  const menuToggle = document.getElementById("menuToggle");
+  const labels = currentLanguage === "en"
+    ? { open: "Open menu", close: "Close menu" }
+    : { open: "मेनू उघडा", close: "मेनू बंद करा" };
+
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+  menuToggle.setAttribute("aria-label", isOpen ? labels.close : labels.open);
+}
+
+function toggleMenu() {
+  const navLinks = document.getElementById("navLinks");
+  const isOpen = navLinks.classList.toggle("open");
+  updateMenuButtonLabel(isOpen);
+}
+
+document.querySelectorAll("#navLinks a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("navLinks").classList.remove("open");
+    updateMenuButtonLabel(false);
+  });
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
